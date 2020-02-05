@@ -47,6 +47,7 @@ export class AppComponent {
         this.appPages = [
           {title: 'Notes' , url: '/notes', icon: 'list-box'},
           
+          
         ]
         this.user = user;
       }
