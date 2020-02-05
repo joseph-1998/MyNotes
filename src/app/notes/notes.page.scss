@@ -1,0 +1,17 @@
+ion-content {
+  --background: rgb(103, 206, 247);
+  ion-card{
+    ion-card-title {
+      text-overflow: ellipsis;
+      overflow: hidden;
+      min-width: 100%;
+      display: block;
+      white-space: nowrap;
+      font-size: 1em;
+      text-transform: capitalize;
+    }
+    ion-card-subtitle {
+      font-size: 0.8em;
+    }
+  }
+}
