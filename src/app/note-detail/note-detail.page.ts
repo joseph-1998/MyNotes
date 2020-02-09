@@ -3,6 +3,7 @@ import { ModalController, AlertController } from '@ionic/angular';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { DataService } from '../data.service';
 
+
 @Component({
   selector: 'app-note-detail',
   templateUrl: './note-detail.page.html',
@@ -13,6 +14,8 @@ export class NoteDetailPage implements OnInit {
   @Input() date: Date;
   @Input() note: string;
   @Input() id: string;
+
+  
 
   private detailForm: FormGroup;
   private edited: boolean = false;

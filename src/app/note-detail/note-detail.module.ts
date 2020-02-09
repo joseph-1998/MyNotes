@@ -8,6 +8,8 @@ import { NoteDetailPageRoutingModule } from './note-detail-routing.module';
 
 import { NoteDetailPage } from './note-detail.page';
 
+
+
 @NgModule({
   imports: [
     CommonModule,
@@ -15,6 +17,7 @@ import { NoteDetailPage } from './note-detail.page';
     IonicModule,
     NoteDetailPageRoutingModule,
     ReactiveFormsModule
+    
   ],
   declarations: [NoteDetailPage]
 })

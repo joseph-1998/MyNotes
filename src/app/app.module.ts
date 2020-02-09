@@ -21,6 +21,8 @@ import { AddPageModule } from './add/add.module';
 import { NoteDetailPageModule } from './note-detail/note-detail.module';
 // camera 
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+// location
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -40,6 +42,7 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
   providers: [
     StatusBar,
     SplashScreen,
+    Geolocation,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     // camera provider
     Camera

@@ -11,6 +11,8 @@ import { PictureService } from '../picture.service';
 export class AddPage implements OnInit {
   private addForm:FormGroup;
 
+  
+
   constructor( 
     private formBuilder: FormBuilder, 
     private modal: ModalController,

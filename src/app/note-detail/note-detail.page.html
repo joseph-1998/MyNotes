@@ -23,6 +23,12 @@
         <ion-label position="stacked">Note</ion-label>
         <ion-textarea name="note" formControlName="note" rows="10"></ion-textarea>
       </ion-item>
+      <ion-row center>
+        <ion-label>
+           <p>Lat: {{ lat }}</p>
+                <p>Lng: {{ lng }}</p>
+        </ion-label><br>
+      </ion-row>
     </ion-list>
     <ion-button type="submit" *ngIf="edited" color="success" expand="block" (click)="save()">
       Save Changes
