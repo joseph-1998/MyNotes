@@ -6,7 +6,7 @@ import {Note} from '../../models/note.interface';
 import { NoteDetailPage } from '../note-detail/note-detail.page';
 import { BehaviorSubject, ReplaySubject, Subscription } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/auth';
-
+import {Geolocation} from '@ionic-native/geolocation/ngx';
 
 @Component({
   selector: 'app-notes',
@@ -22,8 +22,12 @@ export class NotesPage implements OnInit {
   private notesSub: Subscription;
   private authSub: Subscription;
 
+  lat: any;
+  lng: any;
+
   constructor( 
-    private data: DataService, 
+    private data: DataService,
+    public geo: Geolocation,
     private modal: ModalController,
     private loading: LoadingController,
     private afAuth: AngularFireAuth 
@@ -44,7 +48,18 @@ export class NotesPage implements OnInit {
     this.getNotes();
   }
 
+  locate(){
+    this.geo.getCurrentPosition().then((resp) => {
+      this.lat = resp.coords.latitude,
+      this.lng = resp.coords.longitude,
+      console.log("lat" + resp.coords.latitude + "- long" + resp.coords.longitude)
+     }).catch((error) => {
+       console.log('Error getting location', error);
+     });
+  }
+
   async addNote() {
+    
     const addModal = await this.modal.create({ component: AddPage });
     addModal.onDidDismiss()
       .then( (response) => {
@@ -87,10 +102,13 @@ export class NotesPage implements OnInit {
   }
 
   async getNoteDetail( note ) {
+    this.locate();
     const detailModal = await this.modal.create({ component: NoteDetailPage, componentProps: {
       "name": note.name,
       "note": note.note,
       "date": note.date,
+      "latitude": note.latitude,
+      "longitude": note.longitude,
       "id": note.id
     } });
     detailModal.onDidDismiss()
