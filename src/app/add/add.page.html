@@ -22,12 +22,15 @@
       </ion-item>
       
     </ion-list>
-    <ion-button type="submit" expand="block" color="primary" [disabled]="!addForm.valid" (click)="submit()">
-      Add
+    <ion-button type="submit" expand="block" color="primary" [disabled]="!addForm.valid || uploading" (click)="submit()">
+      <span *ngIf="!uploading">Add</span>
+      <span *ngIf="uploading">Uploading image...</span>
     </ion-button>
   </form>
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button color="tertiary" (click)="takePhoto()">
+  <img *ngIf="photo" [src]="photo">
+
+  <ion-fab vertical="top" horizontal="end" slot="fixed">
+    <ion-fab-button color="tertiary" (click)="takePhoto()" [disabled]="!addForm.valid || photoTaken">
       <ion-icon name="camera"></ion-icon>
     </ion-fab-button>
   </ion-fab>

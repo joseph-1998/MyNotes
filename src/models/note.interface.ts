@@ -4,4 +4,6 @@ export interface Note {
     date: Date;
     note: string;
     image: any;
+    latitude: any;
+    longitude: any;
 }

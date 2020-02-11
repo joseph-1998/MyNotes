@@ -5,5 +5,5 @@ export interface Note {
     note: string;
     latitude: any;
     longitude: any;
-    image: any;
+    image: string;
 }

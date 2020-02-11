@@ -46,10 +46,11 @@ export class AppComponent {
       if( user ) {
         this.appPages = [
           {title: 'Notes' , url: '/notes', icon: 'list-box'},
-          
+
           
         ]
         this.user = user;
+        this.router.navigate( ['/notes'] );
       }
       else {
         this.appPages = [

@@ -3,6 +3,8 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
 import { PictureService } from '../picture.service';
 import {Geolocation} from '@ionic-native/geolocation/ngx';
+import { Note } from 'src/models/note.interface';
+
 
 @Component({
   selector: 'app-add',
@@ -11,6 +13,9 @@ import {Geolocation} from '@ionic-native/geolocation/ngx';
 })
 export class AddPage implements OnInit {
   private addForm:FormGroup;
+  private photoTaken: boolean = false;
+  private uploading: boolean = false;
+  private photo: string;
 
   lat: any;
   lng: any;
@@ -53,11 +58,27 @@ export class AddPage implements OnInit {
     let date = new Date();
     let latitude = this.lat;
     let longitude = this.lng
-    let noteData = { name: name, date: date, note: note, latitude: latitude, longitude: longitude };
+    let image = (this.photo) ? this.photo : null;
+    let noteData: Note = { 
+      name: name, 
+      date: date, 
+      note: note,
+      image: image,
+      latitude: latitude,
+      longitude:longitude
+    };
     this.modal.dismiss( noteData );
   }
 
   takePhoto() {
-    this.picture.takePicture();
+    this.photoTaken = true;
+    this.uploading = true;
+    this.picture.takePicture().then( (result:string) => {
+      this.photo = result;
+      this.uploading = false;
+    })
+    .catch( (error) => {
+      console.log(error);
+    });
   }
 }
